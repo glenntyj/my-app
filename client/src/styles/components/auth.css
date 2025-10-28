@@ -1,0 +1,163 @@
+/* Default Panel */
+.default-panel {
+  width: 400px;
+  padding: 2rem;
+  background: var(--panel-bg);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  align-items: center;
+  z-index: 1;
+}
+
+.default-panel h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.default-panel input {
+  width: 93%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.default-panel input:focus {
+  outline: none;
+  border-color: var(--border);
+  box-shadow: 0 0 6px var(--border);
+}
+
+.default-panel button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: var(--button-bg);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.default-panel p {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--text);
+}
+
+.default-panel a {
+  color: var(--accent);
+}
+
+.default-panel span {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: #e74c3c;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.input-icon {
+  position: relative;
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  fill: var(--text);
+  margin-right: 10px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.email-error {
+  position: absolute;
+  left: 2.4rem;
+  bottom: -18px;
+  font-size: 0.85rem;
+}
+
+.password-dots {
+  display: flex;
+  position: absolute;
+  left: 2.4rem;
+  bottom: 0px;
+  gap: 6px;
+}
+
+.password-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color 0.3s ease;
+}
+
+.password-dots .dot.red {
+  background-color: #e74c3c;
+}
+
+.password-dots .dot.orange {
+  background-color: #f39c12;
+}
+
+.password-dots .dot.green {
+  background-color: #27ae60;
+}
+
+.password-strength {
+  position: absolute;
+  bottom: -18px;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+  padding-left: 2.4rem;
+}
+
+.password-strength.weak {
+  color: #e74c3c;
+}
+
+.password-strength.medium {
+  color: #f39c12;
+}
+
+.password-strength.strong {
+  color: #27ae60;
+}
+
+.password-mismatch {
+  position: absolute;
+  left: 2.4rem;
+  bottom: -18px;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #000dff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 42px;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}

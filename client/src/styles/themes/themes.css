@@ -1,0 +1,52 @@
+:root {
+  /* Default Light Theme Variables */
+  --bg: #f5f5f5;
+  --panel-bg: #ffffff;
+  --border: #ccc;
+  --text: #333;
+  --bubble-user: #f0f0f0;
+  --bubble-bot: #f0f0f0;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --button-bg: #ccc;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --bg: #121212;
+  --panel-bg: #1e1e1e;
+  --border: #333;
+  --text: #fff;
+  --bubble-user: #2d2d2d;
+  --bubble-bot: #2d2d2d;
+  --input-bg: #2b2b2b;
+  --input-border: #444;
+  --button-bg: #444;
+}
+
+/* Neon Theme */
+[data-theme='neon'] {
+  --bg: #0f0f0f;
+  --panel-bg: #1a1a1a;
+  --border: #00ffff;
+  --text: #00ffff;
+  --bubble-user: #00ffff1a;
+  --bubble-bot: #00ffff1a;
+  --input-bg: #1a1a1a;
+  --input-border: #00ffff;
+  --button-bg: #00ffff1a;
+}
+
+[data-theme='light'] .chat-particles {
+  background: linear-gradient(135deg, #ffffff, #f0f0f0, #eaeaea);
+}
+
+/* Dark Theme Background */
+[data-theme='dark'] .chat-particles {
+  background: linear-gradient(135deg, #121212, #1a1a1a, #222222);
+}
+
+/* Neon Theme Background */
+[data-theme='neon'] .chat-particles {
+  background: linear-gradient(135deg, #0f0f0f, #001f1f, #000000);
+}
