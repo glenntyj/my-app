@@ -6,25 +6,3 @@
 
 # Environment
 .env
-/client/.env
-/server/.env
-
-# Production builds
-/client/build
-/client/dist
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-/server/logs
-
-# IDE/Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
