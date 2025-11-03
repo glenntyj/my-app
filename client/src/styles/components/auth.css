@@ -96,7 +96,7 @@
   display: flex;
   position: absolute;
   left: 2.4rem;
-  bottom: 0px;
+  bottom: -4px;
   gap: 6px;
 }
 
@@ -104,40 +104,105 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #ccc; /* inactive */
   transition: background-color 0.3s ease;
 }
 
 .password-dots .dot.red {
-  background-color: #e74c3c;
+  background-color: #e74c3c; /* Very Weak */
 }
 
 .password-dots .dot.orange {
-  background-color: #f39c12;
+  background-color: #f39c12; /* Weak */
+}
+
+.password-dots .dot.yellow {
+  background-color: #f1c40f; /* Medium */
+}
+
+.password-dots .dot.lightgreen {
+  background-color: #2ecc71; /* Strong */
 }
 
 .password-dots .dot.green {
-  background-color: #27ae60;
+  background-color: #27ae60; /* Very Strong */
 }
 
+/* Add slight animation for nicer effect */
+.password-dots .dot:not(.inactive):hover {
+  transform: scale(1.2);
+}
+
+/* Strength text */
 .password-strength {
   position: absolute;
-  bottom: -18px;
+  bottom: -6px;
+  right: 0.4rem;
   font-size: 0.85rem;
-  transition: color 0.3s;
-  padding-left: 2.4rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.password-strength.weak {
+/* Text colors */
+.password-strength.veryweak {
   color: #e74c3c;
 }
-
-.password-strength.medium {
+.password-strength.weak {
   color: #f39c12;
 }
-
+.password-strength.medium {
+  color: #f1c40f;
+}
 .password-strength.strong {
+  color: #2ecc71;
+}
+.password-strength.verystrong {
   color: #27ae60;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-popover {
+  position: absolute;
+  top: 110%;
+  left: calc(100% + 12px); /* moves to right of input */
+  transform: translateY(-50%);
+  width: 250px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  color: var(--text);
+  animation: fadeIn 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.password-popover p {
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.password-popover ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.password-popover li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(8px, -50%); }
+  to { opacity: 1; transform: translate(0, -50%); }
 }
 
 .password-mismatch {

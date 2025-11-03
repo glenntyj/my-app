@@ -13,6 +13,7 @@ export default function Register() {
   const [message, setMessage] = useState("");
   const [passwordStrength, setPasswordStrength] = useState("");
   const [emailValid, setEmailValid] = useState(true);
+  const [showPopover, setShowPopover] = useState(false);
 
   const handleEmailChange = (e) => {
     handleChange(e);
@@ -22,12 +23,29 @@ export default function Register() {
   };
 
   const checkPasswordStrength = (password) => {
-    let strength = "Weak";
-    if (password.length > 7 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) {
-      strength = "Strong";
-    } else if (password.length > 5 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
-      strength = "Medium";
+    let score = 0;
+
+    // Criteria
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecial = /[^A-Za-z0-9]/.test(password);
+
+    if (password.length > 7) {
+      if (hasLower) score++;
+      if (hasUpper) score++;
+      if (hasNumber) score++;
+      if (hasSpecial) score++;
+      if (password.length >= 12) score++;
     }
+
+    let strength = "Very Weak";
+
+    if (score >= 2) strength = "Weak";
+    if (score >= 3) strength = "Medium";
+    if (score >= 4) strength = "Strong";
+    if (score >= 5) strength = "Very Strong";
+
     setPasswordStrength(strength);
   };
 
@@ -85,24 +103,58 @@ export default function Register() {
           )}
         </div>
 
-        <div className="input-icon">
+        <div className="input-icon password-field">
           <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
             <path d="M12 17a2 2 0 1 0 2-2 2 2 0 0 0-2 2zm6-7h-1V7a5 5 0 0 0-10 0v3H6a2 2 0 0 0-2 2v8h16v-8a2 2 0 0 0-2-2zm-3 0H9V7a3 3 0 0 1 6 0z"/>
           </svg>
-          <input name="password" type="password" placeholder="Password" value={formData.password} onChange={(e) => {handleChange(e); checkPasswordStrength(e.target.value);}} />
+
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onFocus={() => setShowPopover(true)}
+            onBlur={() => setShowPopover(false)}
+            onChange={(e) => {
+              handleChange(e);
+              checkPasswordStrength(e.target.value);
+            }}
+          />
+
+          {/* Password strength dots */}
           {passwordStrength && (
-            <div className="password-dots">
-              {[1, 2, 3].map((dot, index) => {
-                let color = "";
-                if (passwordStrength === "Weak" && index === 0) color = "red";
-                if (passwordStrength === "Medium" && index < 2) color = "orange";
-                if (passwordStrength === "Strong") color = "green";
-                return <span key={index} className={`dot ${color}`}></span>;
-              })}
+            <>
+              <div className="password-dots">
+                {[1, 2, 3, 4, 5].map((dot, index) => {
+                  let color = "";
+                  if (passwordStrength === "Very Weak" && index === 0) color = "red";
+                  if (passwordStrength === "Weak" && index < 2) color = "orange";
+                  if (passwordStrength === "Medium" && index < 3) color = "yellow";
+                  if (passwordStrength === "Strong" && index < 4) color = "lightgreen";
+                  if (passwordStrength === "Very Strong") color = "green";
+                  return <span key={index} className={`dot ${color}`}></span>;
+                })}
+              </div>
+              <div className={`password-strength ${passwordStrength.replace(" ", "").toLowerCase()}`}>
+                {passwordStrength}
+              </div>
+            </>
+          )}
+
+          {/* Popover */}
+          {showPopover && (
+            <div className="password-popover">
+              <p>Password must contain:</p>
+              <ul>
+                <li>At least 8 characters</li>
+                <li>Contains uppercase and lowercase letters</li>
+                <li>At least one number</li>
+                <li>At least one special character (!@#$%)</li>
+              </ul>
             </div>
           )}
         </div>
-  
+
         <div className="input-icon">
           <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24">
             <path d="M12 17a2 2 0 1 0 2-2 2 2 0 0 0-2 2zm6-7h-1V7a5 5 0 0 0-10 0v3H6a2 2 0 0 0-2 2v8h16v-8a2 2 0 0 0-2-2zm-3 0H9V7a3 3 0 0 1 6 0z"/>
